@@ -26,8 +26,12 @@ func allArticles(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func testArticles(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintlf(w, "test part of post method")
+}
+
 func homepage(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(w, "Sample page RESTapi")
+	fmt.Fprintf(w, "Sample page RESTapi")
 
 }
 
@@ -36,7 +40,8 @@ func handleRequests() {
 	myrouter := mux.NewRouter().StrictSlash(true)
 
 	myrouter.HandleFunc("/", homepage)
-	myrouter.HandleFunc("/articles", allArticles)
+	myrouter.HandleFunc("/articles", allArticles).Methods("GET")
+	myrouter.HandleFunc("/articles", testArticles).Methods("POST")
 	log.Fatal(http.ListenAndServe(":8081", myrouter))
 
 }
