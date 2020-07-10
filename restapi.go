@@ -27,11 +27,11 @@ func allArticles(w http.ResponseWriter, r *http.Request) {
 }
 
 func testArticles(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintlf(w, "test part of post method")
+	fmt.Println(w, "test part of post method")
 }
 
 func homepage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Sample page RESTapi")
+	fmt.Println(w, "Sample page RESTapi")
 
 }
 
