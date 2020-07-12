@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gorilla/mux"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
@@ -46,7 +48,6 @@ func Allusers(w http.ResponseWriter, r *http.Request) {
 func NewUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(w, "new user end point")
 
-	fmt.Println(w, "All users end point")
 	db, err = gorm.Open("sqlite3", "test.db")
 	if err != nil {
 		fmt.Println(err.Error())
@@ -65,6 +66,21 @@ func NewUser(w http.ResponseWriter, r *http.Request) {
 
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(w, "Delete user end point")
+
+	db, err = gorm.Open("sqlite3", "test.db")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	defer db.Close()
+
+	vars := mux.Vars(r)
+
+	name := vars["name"]
+	var user User
+
+	db.Where("name = ?", name).Find(&user)
+	db.Delete(&user)
+	fmt.Fprintf(w, "user delete successfully")
 }
 
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
