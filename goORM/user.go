@@ -9,7 +9,7 @@ func Allusers(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(w, "All users end point")
 }
 
-func NewUser(w http.ResposeWriter, r *http.Request) {
+func NewUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(w, "new user end point")
 }
 
