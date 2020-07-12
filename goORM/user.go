@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -31,10 +32,35 @@ func IntialMigration() {
 
 func Allusers(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(w, "All users end point")
+	db, err = gorm.Open("sqlite3", "test.db")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	defer db.Close()
+
+	var users []User
+	db.Find(&users)
+	json.NewEncoder(w).Encode(users)
 }
 
 func NewUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(w, "new user end point")
+
+	fmt.Println(w, "All users end point")
+	db, err = gorm.Open("sqlite3", "test.db")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	defer db.Close()
+
+	vars := mux.Vars(r)
+	name := vars["name"]
+	email := vars["email"]
+
+	db.Create(&User{name: name, email: email})
+
+	fmt.Fprintf(w, "new user successfully")
+
 }
 
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
