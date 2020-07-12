@@ -24,5 +24,7 @@ func handlerequests() {
 }
 
 func main() {
+
+	IntialMigration()
 	handlerequests()
 }
