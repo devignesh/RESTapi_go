@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -9,6 +11,14 @@ import (
 )
 
 var mySigningKey = []byte("mysupersecretphrase")
+
+func homepage(w http.ResponseWriter, r *http.Request) {
+	validtoken, err := GenerateJwt()
+	if err != nil {
+		fmt.Fprintf(w, err.Error())
+	}
+	fmt.Println(w, validtoken)
+}
 
 func GenerateJwt() (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
@@ -28,13 +38,22 @@ func GenerateJwt() (string, error) {
 	return tokenString, nil
 }
 
+func handlerequests() {
+	http.HandleFunc("/", homepage)
+
+	log.Fatal(http.ListenAndServe(":9001", nil))
+}
+
 func main() {
 	fmt.Println("simple client")
 
-	tokenString, err := GenerateJwt()
+	// tokenString, err := GenerateJwt()
 
-	if err != nil {
-		fmt.Println("erroe while genereaating token")
-	}
-	fmt.Println(tokenString)
+	// if err != nil {
+	// 	fmt.Println("erroe while genereaating token")
+	// }
+	// fmt.Println(tokenString)
+
+	handlerequests()
+
 }
