@@ -56,6 +56,6 @@ func setuproutes() {
 func main() {
 	fmt.Println("GO web sockets")
 	setuproutes()
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8082", nil))
 
 }
