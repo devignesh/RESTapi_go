@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/elliotforbes/athena/port"
+	"RESTapi_go/portscaneer/port"
+	// "github.com/elliotforbes/athena/port"
 )
 
 func main() {
