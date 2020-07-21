@@ -14,5 +14,5 @@ func main() {
 	fmt.Printf("port open: %t\n", open)
 
 	results := port.InitialScan("localhost")
-	fmt.Println(results)
+	fmt.Println("port scaneer results", results)
 }
