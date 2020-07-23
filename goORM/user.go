@@ -46,7 +46,7 @@ func Allusers(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewUser(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(w, "new user end point")
+	fmt.Println(w, "new user end point for go")
 
 	db, err = gorm.Open("sqlite3", "test.db")
 	if err != nil {
