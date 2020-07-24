@@ -50,7 +50,7 @@ func wsEndpoint(w http.ResponseWriter, r *http.Request) {
 
 func setuproutes() {
 	http.HandleFunc("/", homepage)
-	http.HandleFunc("/ws", wsEndpoint)
+	http.HandleFunc("/waitgroup", wsEndpoint)
 }
 
 func main() {
