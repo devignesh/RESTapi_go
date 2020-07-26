@@ -18,5 +18,5 @@ func main() {
 
 	defer conn.Close()
 
-	fmt.Println("Successfully connected")
+	fmt.Println("Successfully connected to rabbitMQ")
 }
