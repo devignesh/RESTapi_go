@@ -51,7 +51,7 @@ func main() {
 		false,
 		amqp.Publishing{
 			ContentType: "text/plain",
-			Body:        []byte("Hello world"),
+			Body:        []byte("Hello vicky msg"),
 		},
 	)
 
