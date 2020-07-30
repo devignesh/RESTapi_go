@@ -11,7 +11,7 @@ func SendSimpleMessage(domain, apiKey string) (string, error) {
 	m := mg.NewMessage(
 		"Mailgun Sandbox <postmaster@sandbox80d9ed4a4bae4afab1cc80ea5117d881.mailgun.org>",
 		"Hello Vignesh",
-		"Testing some Mailgun awesomeness!",
+		"Testing mail with go",
 		"vinesh1865@gmail.com",
 	)
 	_, id, err := mg.Send(m)
