@@ -12,7 +12,7 @@ func SendSimpleMessage(domain, apiKey string) (string, error) {
 		"Mailgun Sandbox <postmaster@sandbox80d9ed4a4bae4afab1cc80ea5117d881.mailgun.org>",
 		"Hello Vignesh",
 		"Testing mail with go",
-		"vinesh1865@gmail.com",
+		"vigneshkumar.mca2016@adhiyamaan.in",
 	)
 	_, id, err := mg.Send(m)
 	return id, err
