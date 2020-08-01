@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	fmt.Println("port scaner in go")
+	fmt.Println("port scaner in go with ports")
 
 	open := port.ScanPort("tcp", "localhost", 1314)
 	fmt.Printf("port open: %t\n", open)
