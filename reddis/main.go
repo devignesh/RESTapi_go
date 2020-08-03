@@ -25,7 +25,7 @@ func main() {
 	pong, err := client.Ping().Result()
 	fmt.Println(pong, err)
 
-	json, err := json.Marshal(Author{Name: "Elliot", Age: 25})
+	json, err := json.Marshal(Author{Name: "vignesh", Age: 22})
 	if err != nil {
 		fmt.Println(err)
 	}
