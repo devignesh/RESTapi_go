@@ -14,7 +14,7 @@ var upgrader = websocket.Upgrader{
 }
 
 func homepage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello home page")
+	fmt.Fprintf(w, "sample page")
 
 }
 
