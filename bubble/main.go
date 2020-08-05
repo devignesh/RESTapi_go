@@ -29,4 +29,6 @@ func bubblesort(input [10]int) {
 
 func main() {
 	fmt.Println("Bubble sort")
+
+	bubblesort(sorte)
 }
