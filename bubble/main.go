@@ -17,7 +17,7 @@ func bubblesort(input [10]int) {
 		for i := 1; i < n; i++ {
 
 			if input[i-1] > input[i] {
-				fmt.Println("swappping")
+				fmt.Println("swappping element")
 
 				input[i], input[i-1] = input[i-1], input[i]
 				swapped = true
