@@ -21,6 +21,12 @@ func strtoint() {
 
 func inttostr() {
 	fmt.Println("integer to string conversion")
+
+	var value1 string
+
+	value1 = strconv.Itoa("3232")
+
+	fmt.Println(value1)
 }
 
 func main() {
