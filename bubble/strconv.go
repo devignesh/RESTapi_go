@@ -24,7 +24,7 @@ func inttostr() {
 
 	var value1 string
 
-	value1 = strconv.Itoa("3232")
+	value1 = strconv.Itoa(3232)
 
 	fmt.Println(value1)
 }
@@ -33,5 +33,6 @@ func main() {
 	fmt.Println("String type conversion")
 
 	strtoint()
+	inttostr()
 
 }
