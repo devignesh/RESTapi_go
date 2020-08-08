@@ -16,7 +16,7 @@ func strtoint() {
 		fmt.Println(err)
 	}
 
-	fmt.Println(value)
+	fmt.Println(value + 2)
 }
 
 func inttostr() {
