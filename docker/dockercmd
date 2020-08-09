@@ -1,0 +1,43 @@
+Gagan S2:17 PM
+CMD simply sets a command to run in the image if no arguments are passed to docker run, while ENTRYPOINT is meant to make your image behave like a binary.
+Naresh Pandian2:28 PM
+docker login
+docker pull
+docker push
+docker build -t 
+docker tag
+docker run -it -d -p -v --name bash
+docker exec -it 
+docker log
+docker cp 
+docker ps,ps -a 
+docker rm
+docker rmi
+docker inspect
+docker images
+docker history
+docker diff
+docker stats
+docker top
+docker start
+docker stop 
+docker network ls
+docker kill 
+docker volume
+docker version
+docker commit
+docker-compose  up , down,stats
+
+Dockerfile
+
+From 
+maintainer 
+USER
+RUN 
+CMD
+ENTRYPOINT 
+ENV 
+EXPOSE 
+COPY
+ADD
+items
