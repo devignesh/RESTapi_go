@@ -1,10 +1,10 @@
 # FROM ubuntu 
 FROM nginx
-# RUN mkdir /app
-# ADD . /app
-# RUN apt-get update
-# RUN apt-get install -y nginx
-ADD index.html /usr/share/nginx/html/
+RUN mkdir /app
+#ADD . /app
+#RUN apt-get update
+#RUN apt-get install -y nginx
+ADD index.html /var/www/html/
 
 RUN chmod +r /usr/share/nginx/html/index.html
 CMD ["nginx", "-g", "daemon off"]
