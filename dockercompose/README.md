@@ -6,11 +6,11 @@ Go with Docker
 
 2. Build image 
 
-    docker-compose build
+    1. docker-compose build
 
 3. Run the Docker-compose file
 
-    docker-compose up
+    1. docker-compose up
 
 // make sure the you have docker and docker-compose in your machine 
 
