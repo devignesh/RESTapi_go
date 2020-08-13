@@ -12,7 +12,7 @@ Go with Docker
 
     1. docker-compose up
 
-// make sure the you have docker and docker-compose in your machine 
+make sure the you have docker and docker-compose in your machine 
 
     To verify 
 
@@ -20,3 +20,13 @@ Go with Docker
 
     2. docker-compose --version
 
+
+Install Docker-compose 
+
+    1. sudo curl -L "https://github.com/docker/compose/releases/download/{docker-compose version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+    2. sudo ln -sf /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+    3. sudo chmod +x /usr/bin/docker-compose
+
+    4. docker-compose --version
