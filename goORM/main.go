@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"RESTapi_go/goORM/.."
 )
 
 func sample(w http.ResponseWriter, r *http.Request) {
