@@ -7,6 +7,8 @@ services:
     container_name: 'go-docker'
     ports:
     - "8080:8081"
+    networks: 
+      - vicky_network
     
   nginx:
     image: "nginx"
@@ -15,4 +17,6 @@ services:
     links:
     - api
   
-
+networks:
+  vicky_network:
+    driver: bridge
