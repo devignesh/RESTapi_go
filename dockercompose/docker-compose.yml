@@ -11,11 +11,12 @@ services:
       - vicky_network
     
   nginx:
+    container_name: 'nginx-container'
     image: "nginx"
     ports:
     - "8083:80"
-    links:
-    - api
+    depends_on:
+      - api
   
 networks:
   vicky_network:
