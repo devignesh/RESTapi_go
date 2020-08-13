@@ -34,13 +34,13 @@ func homepage(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// func handleRequests() {
+func handleRequests() {
 
-// 	http.HandleFunc("/", homepage)
-// 	http.HandleFunc("/articles", allArticles)
-// 	http.HandleFunc("/articless", testArticles)
+	http.HandleFunc("/", homepage)
+	http.HandleFunc("/articles", allArticles)
+	http.HandleFunc("/articless", testArticles)
 
-// }
+}
 
 func main() {
 	handleRequests()
