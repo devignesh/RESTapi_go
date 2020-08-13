@@ -25,14 +25,14 @@ func allArticles(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// func testArticles(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Println(w, "post method")
-// }
+func testArticles(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(w, "post method")
+}
 
-// func homepage(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Println(w, "Docker compose page")
+func homepage(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(w, "Docker compose page")
 
-// }
+}
 
 // func handleRequests() {
 
