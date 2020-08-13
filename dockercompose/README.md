@@ -11,3 +11,12 @@ Go with Docker
 3. Run the Docker-compose file
 
     docker-compose up
+
+// make sure the you have docker and docker-compose in your machine 
+
+    To verify 
+
+    1. docker --version
+
+    2. docker-compose --version
+
