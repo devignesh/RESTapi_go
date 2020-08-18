@@ -10,7 +10,7 @@ func main() {
 
 	if len(os.Args) <= 1 {
 		fmt.Println("Usage: writedata /path/to/file")
-		panic("You're missing the file name")
+		panic("You're missing the file")
 	}
 	filename := os.Args[1]
 	hostname, err := os.Hostname()
