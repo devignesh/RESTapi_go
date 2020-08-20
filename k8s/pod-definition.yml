@@ -7,5 +7,5 @@ metadata:
     type: front-end
 spec:
   containers:
-    - name: nginx-container
+    - name: nginx-container-test
       image: nginx
