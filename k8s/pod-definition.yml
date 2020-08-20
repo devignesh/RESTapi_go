@@ -9,3 +9,6 @@ spec:
   containers:
     - name: nginx-container-test
       image: nginx
+
+    - name: redis-container
+      image: redis
