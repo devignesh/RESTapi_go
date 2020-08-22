@@ -109,5 +109,158 @@ alter table employee alter column email drop default;
 
 //stored procedure
 
+employ=# create or replace procedure emp("emp_id" integer, "birth_date" date, "email" character(20), "emp_name" character(20), "join_date" date, "phone" character(10), "created_at" timestamp without time zone)
+LANGUAGE SQL
+AS $$
+INSERT INTO public."employee" VALUES ("emp_id", "birth_date", "email", "emp_name", "join_date", "phone", "created_at");
+$$;
+CREATE PROCEDURE
+
+CALL emp(3,'1-1-2020', 'vv@g.com', 'test', '2-2-2222', '3333333');
+
+
+
+
+//MS SQL 
+
+----------------------------------
+
+1> CREATE DATABASE customer;
+2> GO
+Msg 1801, Level 16, State 3, Server devignesh, Line 1
+Database 'customer' already exists. Choose a different database name.
+1> CREATE DATABASE custom;
+2> GO
+1> USE custom
+2> GO
+Changed database context to 'custom'.
+1> CREATE TABLE Inventory (id INT, name NVARCHAR(50), quantity INT)
+2> GO
+1> INSERT INTO Inventory VALUES (1, 'banana', 150); INSERT INTO Inventory VALUES (2, 'orange', 154);
+2> GO
+
+(1 rows affected)
+
+(1 rows affected)
+1> SELECT * FROM Inventory WHERE quantity > 152;
+2> GO
+
+
+//Stored procedure
+
+
+1> CREATE PROCEDURE cus
+2> AS
+3> SELECT * FROM custom
+4> GO
+1> EXEC cus;
+2> GO
+
+
+
+
+//Triggers and Procedure
+
+
+
+employ=# CREATE OR REPLACE FUNCTION log_last_name_changes()
+employ-#   RETURNS TRIGGER 
+employ-#   LANGUAGE PLPGSQL  
+employ-#   AS
+employ-# $$
+employ$# BEGIN
+employ$# IF NEW.last_name <> OLD.last_name THEN
+employ$# 
+ABORT           COMMENT         DISCARD         GRANT           NOTIFY          REVOKE          START           WITH
+ALTER           COMMIT          DO              IMPORT          PREPARE         ROLLBACK        TABLE           
+ANALYZE         COPY            DROP            INSERT          REASSIGN        SAVEPOINT       TRUNCATE        
+BEGIN           CREATE          END             LISTEN          REFRESH         SECURITY LABEL  UNLISTEN        
+CHECKPOINT      DEALLOCATE      EXECUTE         LOAD            REINDEX         SELECT          UPDATE          
+CLOSE           DECLARE         EXPLAIN         LOCK            RELEASE         SET             VACUUM          
+CLUSTER         DELETE FROM     FETCH           MOVE            RESET           SHOW            VALUES          
+employ$#  INSERT INTO employee_audits(employee_id,last_name,changed_on)
+employ$# 
+ABORT           COMMENT         DISCARD         GRANT           NOTIFY          REVOKE          START           WITH
+ALTER           COMMIT          DO              IMPORT          PREPARE         ROLLBACK        TABLE           
+ANALYZE         COPY            DROP            INSERT          REASSIGN        SAVEPOINT       TRUNCATE        
+BEGIN           CREATE          END             LISTEN          REFRESH         SECURITY LABEL  UNLISTEN        
+CHECKPOINT      DEALLOCATE      EXECUTE         LOAD            REINDEX         SELECT          UPDATE          
+CLOSE           DECLARE         EXPLAIN         LOCK            RELEASE         SET             VACUUM          
+CLUSTER         DELETE FROM     FETCH           MOVE            RESET           SHOW            VALUES          
+employ$#  VALUES(OLD.id,OLD.last_name,now());
+employ$# END IF;
+employ$# 
+employ$# RETURN NEW;
+employ$# END;
+employ$# $$
+employ-# ;
+CREATE FUNCTION
+employ=# CREATE TRIGGER last_name_changes
+employ-#   BEFORE UPDATE
+employ-#   ON employees
+employ-#   FOR EACH ROW
+employ-#   EXECUTE PROCEDURE log_last_name_changes();
+CREATE TRIGGER
+employ=# INSERT INTO employees (first_name, last_name)
+employ-# VALUES ('vicky', 'kumar');
+ERROR:  null value in column "id" violates not-null constraint
+DETAIL:  Failing row contains (null, vicky, kumar).
+employ=# INSERT INTO employees (id, first_name, last_name)
+VALUES ('1', 'vicky', 'kumar');
+INSERT 0 1
+employ=# INSERT INTO employees (id, first_name, last_name)
+VALUES ('1', 'test kloud', 'manage');
+ERROR:  duplicate key value violates unique constraint "employees_pkey"
+DETAIL:  Key (id)=(1) already exists.
+employ=# INSERT INTO employees (id, first_name, last_name)
+VALUES ('2', 'test kloud', 'manage');
+INSERT 0 1
+employ=# 
+employ=# 
+employ=# 
+employ=# 
+employ=# \d employee
+employee         employee_audits  employee_pkey    employees        employees_pkey   
+employ=# \d employee_audits 
+              Table "public.employee_audits"
+   Column    |              Type              | Modifiers 
+-------------+--------------------------------+-----------
+ id          | integer                        | 
+ employee_id | integer                        | not null
+ last_name   | character varying(40)          | not null
+ changed_on  | timestamp(6) without time zone | not null
+
+employ=# select * from employee_audits 
+employ-# ;
+ id | employee_id | last_name | changed_on 
+----+-------------+-----------+------------
+(0 rows)
+
+employ=# SELECT * FROM employees;
+ id | first_name | last_name 
+----+------------+-----------
+  1 | vicky      | kumar
+  2 | test kloud | manage
+(2 rows)
+
+employ=# UPDATE employees
+employ-# SET last_name = 'Brown'
+employ-# WHERE ID = 2;
+UPDATE 1
+employ=# SELECT * FROM employees;
+ id | first_name | last_name 
+----+------------+-----------
+  1 | vicky      | kumar
+  2 | test kloud | Brown
+(2 rows)
+
+employ=# SELECT * FROM employee_audits;
+ id | employee_id | last_name |         changed_on         
+----+-------------+-----------+----------------------------
+    |           2 | manage    | 2020-08-23 00:15:54.739615
+
+
+
+
 
 
