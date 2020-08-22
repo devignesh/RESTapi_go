@@ -102,3 +102,36 @@ Indexes:
 
 employ=#
 
+//Remove default value:
+
+alter table employee alter column email drop default;
+
+
+//stored procedure
+
+CREATE OR REPLACE PROCEDURE ADD_USER
+    (
+    P_t_name IN technology.t_name%TYPE,
+    P_t_category IN technology.t_category%TYPE,
+    P_t_msg_error OUT VARCHAR2
+    )
+IS
+
+DECLARE
+-- No variable declarations at this time.
+
+BEGIN
+    INSERT INTO
+    technology
+    (
+     t_name
+     , t_category
+    ) VALUES (
+     P_t_name
+     , P_t_category
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        P_t_msg_error := SQLERRM;
+END ADD_USER;
+
