@@ -80,3 +80,25 @@ employ-# ;
 
 employ=# 
 
+// Default value to column:
+
+alter table employee alter column email set default false;
+
+employ=# alter table employee alter column email set default false;
+ALTER TABLE
+employ=# \d employee
+                 Table "public.employee"
+   Column   |            Type             |   Modifiers   
+------------+-----------------------------+---------------
+ emp_id     | integer                     | not null
+ birth_date | date                        | 
+ email      | character(20)               | default false
+ emp_name   | character(30)               | 
+ join_date  | date                        | 
+ phone      | character(10)               | 
+ created_at | timestamp without time zone | 
+Indexes:
+    "employee_pkey" PRIMARY KEY, btree (emp_id)
+
+employ=#
+
