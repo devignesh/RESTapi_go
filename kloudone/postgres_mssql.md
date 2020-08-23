@@ -118,7 +118,33 @@ CREATE PROCEDURE
 
 CALL emp(3,'1-1-2020', 'vv@g.com', 'test', '2-2-2222', '3333333');
 
+CALL
 
+employ=# create or replace procedure emp("emp_id" integer, "birth_date" date, "email" character(20), "emp_name" character(20), "join_date" date, "phone" character(10))
+LANGUAGE SQL
+AS $$
+INSERT INTO public."employee" VALUES ("emp_id", "birth_date", "email", "emp_name", "join_date", "phone");
+$$;
+CREATE PROCEDURE
+employ=# CALL emp(3,'1-1-2020', 'vv@g.com', 'test', '2-2-2222', '3333333');
+ERROR:  duplicate key value violates unique constraint "employee_pkey"
+DETAIL:  Key (emp_id)=(3) already exists.
+CONTEXT:  SQL function "emp" statement 1
+employ=# CALL emp(4,'1-1-2020', 'vv@g.com', 'test', '2-2-2222', '3333333');
+CALL
+employ=# 
+employ=# select * from employee 
+employ-# ;
+ emp_id | birth_date |        email         |            emp_name            | join_date  |   phone    
+--------+------------+----------------------+--------------------------------+------------+------------
+      1 | 1987-10-10 | abc@gmail.com        | Sameer Rawat                   | 2015-01-03 | 9876543210
+      2 | 1987-10-10 | abc@gmail.com        | Sameer Rawat                   | 2015-01-03 | 9876543210
+      3 | 1987-10-10 | abc@gmail.com        | Sameer Rawat                   | 2015-01-03 | 9876543210
+    102 | 1988-02-03 | av@gmail.com         | Arvind Verma                   | 2014-02-03 | 1234567890
+      4 | 2020-01-01 | vv@g.com             | test                           | 2222-02-02 | 3333333   
+(5 rows)
+
+employ=# 
 
 
 //MS SQL 
