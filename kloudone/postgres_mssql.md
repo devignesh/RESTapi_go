@@ -147,6 +147,94 @@ employ-# ;
 employ=# 
 
 
+
+employ=# create table sample
+employ-# (
+employ(# sno integer NOT NULL,
+employ(# siid integer,sname varchar(20),sd date,ed date,sid integer,status boolean DEFAULT false,CONSTRAINT pk_snoa PRIMARY KEY (sno));
+CREATE TABLE
+employ=# INSERT INTO SAMPLE (sno, siid, sd, ed, sid, status)
+employ-# VALUES (1,1,'2013-04-04','2013-04-04',2,'f' );
+INSERT 0 1
+employ=# INSERT INTO SAMPLE (sno, siid, sd, ed, sid, status) VALUES (2, 2, '1993-12-24', '1995-12-02', 4, 't');
+INSERT 0 1
+employ=# CREATE PROCEDURE sample_insert(_sno integer, _siid integer, _sd date, _ed date, _sid integer, _status boolean)
+employ-# LANGUAGE SQL
+employ-# 
+employ-# AS $BODY$
+employ$# INSERT INTO SAMPLE(sno, siid, sd, ed, sid, status)
+employ$# VALUES(_sno, _siid, _sd, _ed, _sid, _status);
+employ$# $BODY$;
+CREATE PROCEDURE
+employ=# CALL sample_insert (3, 103, '1993-12-24', '1995-12-02', 4, 't');
+CALL
+employ=# select * from sample;
+ sno | siid | sname |     sd     |     ed     | sid | status 
+-----+------+-------+------------+------------+-----+--------
+   1 |    1 |       | 2013-04-04 | 2013-04-04 |   2 | f
+   2 |    2 |       | 1993-12-24 | 1995-12-02 |   4 | t
+   3 |  103 |       | 1993-12-24 | 1995-12-02 |   4 | t
+(3 rows)
+
+employ=#
+
+
+Autonomous Transactions:
+----------------------
+
+Procedures allow you to define autonomous transactions like COMMIT or ROLLBACK within the procedure
+
+employ=# CREATE OR REPLACE PROCEDURE test() 
+employ-# LANGUAGE plpgsql
+employ-#  AS $$
+employ$#  DECLARE
+employ$# BEGIN
+employ$# CREATE TABLE tnew1 (id int);
+employ$# INSERT INTO tnew1 VALUES (1);
+employ$#  COMMIT;
+employ$# CREATE TABLE tnew2 (id int);
+employ$# INSERT INTO tnew2 VALUES (1);
+employ$#  ROLLBACK;
+employ$# END $$;
+CREATE PROCEDURE
+employ=# call test();
+CALL
+employ=# select * from tnew1 ;
+ id 
+----
+  1
+(1 row)
+
+employ=# 
+
+
+
+Displaying a message on the screen 
+------------------------------------
+
+
+employ=# CREATE OR REPLACE PROCEDURE display_message (INOUT msg TEXT)
+employ-# AS $$
+employ$# BEGIN
+employ$# RAISE NOTICE 'Procedure Parameter: %', msg ;
+employ$# END ;
+employ$# $$
+employ-# LANGUAGE plpgsql ;
+CREATE PROCEDURE
+employ=# call display_message('Hi vicky');
+NOTICE:  Procedure Parameter: Hi vicky
+   msg    
+----------
+ Hi vicky
+(1 row)
+
+
+
+
+
+
+
+
 //MS SQL 
 
 ----------------------------------
