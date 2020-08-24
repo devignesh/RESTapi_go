@@ -375,6 +375,79 @@ employ=# SELECT * FROM employee_audits;
 
 
 
+// function and procedure
 
+postgres=# CREATE FUNCTION function1(INOUT p1 TEXT) 
+postgres-# AS $$
+postgres$# BEGIN
+postgres$#     RAISE NOTICE 'Function Parameter: %', p1 ;
+postgres$# END ;
+postgres$# $$
+postgres-# LANGUAGE plpgsql ;
+CREATE FUNCTION
+postgres=# \df
+                          List of functions
+ Schema |    Name    | Result data type | Argument data types | Type 
+--------+------------+------------------+---------------------+------
+ public | function1  | text             | INOUT p1 text       | func
+ public | procedure1 |                  | INOUT p1 text       | proc
+(2 rows)
+
+postgres=# SELECT function1('vicky kloud');
+NOTICE:  Function Parameter: vicky kloud
+  function1  
+-------------
+ vicky kloud
+(1 row)
+
+postgres=#
+
+
+
+Transaction Control in PROCEDURE:
+-----------------------------
+
+Transaction control allowing us to COMMIT and ROLLBACK inside procedures. CREATE FUNCTION does not support transaction inside the function. This is the main difference between FUNCTION and PROCEDURE in PostgreSQL.
+
+employ=# create or replace procedure trans()
+employ-# language plpgsql
+employ-# as $$
+employ$# declare
+employ$# begin
+employ$# create table test_trans_table (id int);
+employ$# insert into test_trans_table values(1);
+employ$# commit;
+employ$# create table test_trans_table2 (id int);
+employ$# insert into test_trans_table values(2);
+employ$# insert into test_trans_table2 values(1);
+employ$# rollback;
+employ$# end $$;
+CREATE PROCEDURE
+employ=# call trans();
+CALL
+employ=# \d
+              List of relations
+ Schema |       Name       | Type  |  Owner   
+--------+------------------+-------+----------
+ public | employee         | table | postgres
+ public | sample           | table | postgres
+ public | test_trans_table | table | postgres
+ public | tnew1            | table | postgres
+(4 rows)
+
+employ=# \d test_trans_table 
+          Table "public.test_trans_table"
+ Column |  Type   | Collation | Nullable | Default 
+--------+---------+-----------+----------+---------
+ id     | integer |           |          | 
+
+employ=# select * from test_trans_table 
+employ-# ;
+ id 
+----
+  1
+(1 row)
+
+employ=# 
 
 
