@@ -451,3 +451,53 @@ employ-# ;
 employ=# 
 
 
+//MS SQL 
+
+devignesh@devignesh:~$ sqlcmd -S localhost -U SA
+Password: 
+1> use employ
+2> GO
+Msg 911, Level 16, State 1, Server devignesh, Line 1
+Database 'employ' does not exist. Make sure that the name is entered correctly.
+1> select name from sys.databases
+2> GO
+name                                                                                                                            
+--------------------------------------------------------------------------------------------------------------------------------
+master                                                                                                                          
+tempdb                                                                                                                          
+model                                                                                                                           
+msdb                                                                                                                            
+vickytest                                                                                                                       
+customer                                                                                                                        
+custom                                                                                                                          
+
+(7 rows affected)
+1> 
+1> 
+1> USE vickytest
+2> GO
+Changed database context to 'vickytest'.
+1> CREATE PROCEDURE GetEmployees
+2> WITH ENCRYPTION
+3> AS
+4> BEGIN
+5> SET NOCOUNT ON
+6> 
+7> 
+8> 
+9> SELECT EmpID, EmpName from EMployee
+10> END
+11> GO
+1> sp_helptext GetEmployees
+2> GO
+The text for object 'GetEmployees' is encrypted.
+1> 
+
+
+
+Renaming the stored procedure:
+------------------------------
+
+
+sp_remname 'procedure name','new procedure name'
+
