@@ -11,6 +11,7 @@ CREATE TABLE employee
     CONSTRAINT employee_pkey PRIMARY KEY (emp_id)
 );
 
+//Insert Data
 
 INSERT into employee(emp_id, birth_date, email, emp_name, join_date, phone) VALUES (2, '09-01-1997', 'test@gmail.com', 'vicky', '03-01-2019', '9876543210')
 

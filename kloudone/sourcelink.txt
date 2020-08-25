@@ -18,3 +18,20 @@ https://www.c-sharpcorner.com/UploadFile/rohatash/select-insert-update-delete-us
 https://www.sqlshack.com/sql-server-stored-procedures-for-beginners/
 
 
+https://www.databasejournal.com/features/postgresql/hands-on-sql-in-postgresql.html
+
+
+
+https://www.guru99.com/postgresql-data-types.html
+
+https://popsql.com/learn-sql/postgresql/how-to-create-a-view-in-postgresql
+
+
+
+https://www.w3schools.com/sql/sql_stored_procedures.asp
+
+
+
+https://www.postgresqltutorial.com/creating-first-trigger-postgresql/
+
+
