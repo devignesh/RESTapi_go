@@ -232,3 +232,40 @@ Renaming the stored procedure:
 
 
 sp_remname 'procedure name','new procedure name'
+
+
+//Store Procedure
+
+CREATE OR REPLACE PROCEDURE genre_traverse() LANGUAGE plpgsql SECURITY DEFINER
+AS $$
+
+DECLARE
+genre_rec record;
+BEGIN
+for genre_rec in (select "GenreId","Name" from public."Genre" order by "GenreId")
+loop
+RAISE NOTICE 'Genre Id is : % , Name is : %', genre_rec."GenreId",genre_rec."Name";
+end loop;
+END;
+$$ ;
+
+
+
+create or replace procedure accout(
+sender int,
+receiver int,
+amount dec
+)
+language plpgsql
+as $$
+begin
+update accounts
+set balance = balance + amount
+where id = receiver;
+update accounts
+set balance = balance - amount
+where id = sender;
+commit;
+end;$$
+;
+
