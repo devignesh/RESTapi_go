@@ -269,3 +269,19 @@ commit;
 end;$$
 ;
 
+
+
+CREATE OR REPLACE PROCEDURE datestyle_change()
+LANGUAGE plpgsql
+SET datestyle TO postgres, dmy
+AS $$
+begin
+raise notice 'Current Date is : % ', now();
+end;
+$$;
+
+
+call datestyle_change();
+
+
+
