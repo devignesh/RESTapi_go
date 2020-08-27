@@ -1,8 +1,8 @@
 create table chartype (
-id serial primary key, 
-name char(255),
-job varchar(15),
-company text
+    id serial primary key, 
+    name char(255),
+    job varchar(15),
+    company text
 );
 
 

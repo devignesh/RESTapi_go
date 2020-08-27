@@ -1,6 +1,6 @@
 create table boolean (
-id int primary key, 
-active boolean not null 
+    id int primary key, 
+    active boolean not null 
 );
 
 
