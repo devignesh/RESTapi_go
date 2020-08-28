@@ -21,7 +21,7 @@ type Articals []article
 
 func allArticles(w http.ResponseWriter, r *http.Request) {
 	articles := Articals{
-		article{Title: "test title", Desc: "test description", Content: "Hi vicky"},
+		article{id: "1", Title: "test title", Desc: "test description", Content: "Hi vicky"},
 	}
 	fmt.Println("All articles end point")
 	json.NewEncoder(w).Encode(articles)
@@ -76,10 +76,10 @@ func handleRequests() {
 
 	rot.HandleFunc("/", homepage)
 	rot.HandleFunc("/articles", allArticles).Methods("GET")
-	rot.HandleFunc("/articles", createNewArticle).Methods("POST")
-	rot.HandleFunc("/articles/{id}", singlearticle).Methods("GET")
-	rot.HandleFunc("/articles/{id}", deleteArticle).Methods("GET")
-	rot.HandleFunc("/articles", testArticles).Methods("POST")
+	rot.HandleFunc("/articlee", createNewArticle).Methods("POST")
+	rot.HandleFunc("/articlee/{id}", singlearticle).Methods("GET")
+	rot.HandleFunc("/articlee/{id}", deleteArticle).Methods("GET")
+	rot.HandleFunc("/articlex", testArticles).Methods("POST")
 	log.Fatal(http.ListenAndServe(":8081", rot))
 
 }
