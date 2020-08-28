@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 
@@ -10,6 +11,7 @@ import (
 )
 
 type article struct {
+	id      string `json:"Id"`
 	Title   string `json:"Title"`
 	Desc    string `json:"desc"`
 	Content string `json:"content"`
@@ -26,6 +28,39 @@ func allArticles(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func singlearticle(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	key := vars["id"]
+
+	for _, article := range Articals {
+		if article.Id == key {
+			json.NewEncoder(w).Encode(article)
+		}
+	}
+}
+
+func createNewArticle(w http.ResponseWriter, r *http.Request) {
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article article
+	json.Unmarshal(reqBody, &article)
+
+	article = append(Articals, article)
+
+	json.NewEncoder(w).Encode(article)
+}
+
+func deleteArticle(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+
+	for index, article := range Articals {
+		if article.Id == id {
+			article = append(Articals[:index], Articals[index+1:]...)
+		}
+	}
+
+}
+
 func testArticles(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(w, "test part of post method")
 }
@@ -37,12 +72,15 @@ func homepage(w http.ResponseWriter, r *http.Request) {
 
 func handleRequests() {
 
-	myrouter := mux.NewRouter().StrictSlash(true)
+	rot := mux.NewRouter().StrictSlash(true)
 
-	myrouter.HandleFunc("/", homepage)
-	myrouter.HandleFunc("/articles", allArticles).Methods("GET")
-	myrouter.HandleFunc("/articles", testArticles).Methods("POST")
-	log.Fatal(http.ListenAndServe(":8081", myrouter))
+	rot.HandleFunc("/", homepage)
+	rot.HandleFunc("/articles", allArticles).Methods("GET")
+	rot.HandleFunc("/articles", createNewArticle).Methods("POST")
+	rot.HandleFunc("/articles/{id}", singlearticle).Methods("GET")
+	rot.HandleFunc("/articles/{id}", deleteArticle).Methods("GET")
+	rot.HandleFunc("/articles", testArticles).Methods("POST")
+	log.Fatal(http.ListenAndServe(":8081", rot))
 
 }
 
