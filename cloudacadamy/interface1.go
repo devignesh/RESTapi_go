@@ -29,6 +29,7 @@ func main() {
 	dev2 := laptop{"mackbook pro", "1.79l"}
 
 	devices := []device{dev1, dev2}
+	fmt.Println(devices)
 
 	for _, dev := range devices {
 		fmt.Println(dev.turnOn())
