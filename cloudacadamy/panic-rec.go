@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func system() int {
+func panicfunc() int {
 	fmt.Println("system started...")
 
 	defer func(msg string) {
@@ -10,10 +10,10 @@ func system() int {
 			fmt.Println("recovered")
 		}
 		fmt.Println(msg)
-	}("blah")
+	}("Vicky")
 
 	var data []int
-	var x = data[0] //causes runtime spanic!
+	var x = data[0]
 	x++
 
 	fmt.Println("system finished!")
@@ -22,8 +22,8 @@ func system() int {
 }
 
 func main() {
-	data := system()
+	data := panicfunc()
 	fmt.Println(data)
 
-	panic("die!") //exits program with non-zero code
+	panic("die!")
 }
