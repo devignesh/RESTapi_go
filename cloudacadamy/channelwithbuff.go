@@ -3,7 +3,7 @@ package main
 import "time"
 
 func main() {
-	size := 3
+	size := 4
 	var buffChan = make(chan int, size)
 
 	//reader
