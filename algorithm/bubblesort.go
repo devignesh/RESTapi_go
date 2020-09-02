@@ -4,11 +4,12 @@ import (
 	"fmt"
 )
 
-func bubble(numbers []int) {
+func bubble(numbers []int) bool {
 	var n int = len(numbers)
 
 	var firstindex int = 0
 	var secondindex int = 1
+	swaped := false
 
 	for secondindex < n {
 		var firstnumber int = numbers[firstindex]
@@ -19,20 +20,25 @@ func bubble(numbers []int) {
 		if firstnumber > secondnumber {
 			numbers[firstindex] = secondnumber
 			numbers[secondindex] = firstnumber
+			swaped = true
 
 		}
 
 		firstindex++
 		secondindex++
 	}
+	return swaped
 }
 
 func sortloop(numbers []int) {
-	var n int = len(numbers)
+	n := len(numbers)
 
 	for i := 0; i < n; i++ {
-		bubble(numbers)
-		fmt.Println("vicky", numbers)
+		if !bubble(numbers) {
+			// fmt.Println("vicky", numbers)
+			return
+		}
+
 	}
 }
 
