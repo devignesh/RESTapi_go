@@ -31,8 +31,8 @@ func getArea(s Shape) float64 {
 }
 
 func main() {
-	circle := Circle{x: 0, y: 0, radius: 5}
-	rectangle := Rectangle{width: 10, height: 5}
+	circle := Circle{x: 0, y: 0, radius: 11}
+	rectangle := Rectangle{width: 3, height: 2}
 
 	fmt.Printf("Circle Area: %f\n", getArea(circle))
 	fmt.Printf("Rectangle Area: %f\n", getArea(rectangle))
