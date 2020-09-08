@@ -8,6 +8,7 @@ import (
 
 func main() {
 	r := gin.Default()
+	fmt.Println("test")
 
 	r.GET("/test", handler.pingget)
 
