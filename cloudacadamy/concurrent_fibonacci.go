@@ -12,7 +12,7 @@ type element struct {
 
 func main() {
 	var num int
-	// fmt.Scanf("Enter how many numbers you want", &num)
+	
 	num = 10
 	ch := make(chan element, 100)
 	wg := new(sync.WaitGroup)
