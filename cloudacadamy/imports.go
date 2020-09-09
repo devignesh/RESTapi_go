@@ -11,7 +11,7 @@ import "strconv"
 import m "math"
 
 func main() {
-	name := "vicky"
+	name := "vicky kumar"
 	vr := "Gopher"
 
 	fmt.Println(strings.ToUpper(name))
