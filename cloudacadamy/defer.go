@@ -7,7 +7,7 @@ func doSomething(msg string) {
 }
 
 func system() int {
-	fmt.Println("system started...")
+	fmt.Println("system started func...")
 
 	defer doSomething("cleanup")
 	defer doSomething("stop")
