@@ -1,4 +1,4 @@
-//Publisher Port (1111)
+--Publisher Port (1111)
 CREATE DATABASE pub;
 
 CREATE TABLE person (
@@ -27,7 +27,7 @@ CREATE PUBLICATION publisher FOR ALL TABLES;
 
 
 
-//subscriber (1112)
+--subscriber (1112)
 
 CREATE TABLE person (
 	id BIGSERIAL NOT NULL PRIMARY KEY,
