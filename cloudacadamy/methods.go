@@ -25,7 +25,7 @@ func (d *driving) ageupdate(newAge int) {
 }
 
 func main() {
-	person1 := driving{"vicky", "kumar", 35}
+	person1 := driving{"vicky", "kumar", 23}
 	person2 := driving{"vignesh", "kumar", 18}
 
 	fmt.Printf("%s can drive: %t\n", person1.namecon(), person1.candrive())
