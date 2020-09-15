@@ -100,3 +100,23 @@ ALTER TABLE ads ADD PRIMARY KEY (id, company_id);
 
 
 -- citus replication model :
+
+SET citus.replication_model = 'streaming';
+
+
+-- Distribute the tables:
+
+SELECT create_distributed_table('companies', 'id');
+
+SELECT create_distributed_table('campaigns', 'company_id');
+
+SELECT create_distributed_table('ads', 'company_id');
+
+
+-- Load the data from CSV file:
+
+\copy companies from '../devignesh/Downloads/companies.csv' with csv
+
+\copy campaigns from '../devignesh/Downloads/campaigns.csv' with csv
+
+\copy ads from '../devignesh/Downloads/ads.csv' with csv
