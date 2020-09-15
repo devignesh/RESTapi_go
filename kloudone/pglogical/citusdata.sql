@@ -120,3 +120,20 @@ SELECT create_distributed_table('ads', 'company_id');
 \copy campaigns from '../devignesh/Downloads/campaigns.csv' with csv
 
 \copy ads from '../devignesh/Downloads/ads.csv' with csv
+
+
+-- Sample queries:
+
+INSERT INTO companies VALUES (5000, 'New Company', 'https://randomurl/image.png', now(), now());
+
+
+UPDATE campaigns
+
+  SET monthly_budget = monthly_budget*2
+
+  WHERE company_id = 5;
+
+
+\d      -- run this command to view the list of distributed tables
+
+
