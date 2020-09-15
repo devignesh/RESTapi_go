@@ -39,7 +39,7 @@ SELECT pglogical.create_node(
 );
 
 SELECT pglogical.create_subscription(
-    subscription_name := 'vicky_clu1',
+    subscription_name := 'subscriber',
     provider_dsn := 'host=locahost port=1111 dbname=pglogicaldb'
 );
 
