@@ -9,7 +9,7 @@ import (
 
 const defaultAddr = ":8080"
 
-// main starts an http server on the $PORT environment variable.
+
 func main() {
 	addr := defaultAddr
 	
