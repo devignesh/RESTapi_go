@@ -11,6 +11,7 @@ var urls = []string{
 	"https://www.google.com",
 	"https://www.gopherhut.com",
 	"https://www.github.com",
+	"https://www.linkedin.com"
 }
 
 func status(w http.ResponseWriter, r *http.Request) {
