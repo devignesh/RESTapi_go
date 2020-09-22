@@ -20,7 +20,7 @@ type Product struct {
 var listProducts []Product
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Homepage Endpoint Hit")
+	fmt.Fprintf(w, "sample home page")
 }
 func Create(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Hi! You came to Home! :)")
