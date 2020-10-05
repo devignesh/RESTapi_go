@@ -115,5 +115,6 @@ func handleRequests() {
 	log.Fatal(http.ListenAndServe(":8081", myRouter))
 }
 func main() {
+	fmt.Println("Main funcs startted")
 	handleRequests()
 }
