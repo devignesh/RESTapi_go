@@ -11,7 +11,7 @@ const (
 	host     = "localhost"
 	port     = 5432
 	user     = "postgres"
-	password = "qwerty@123"
+	password = "postgres"
 	dbname   = "employ"
 )
 
