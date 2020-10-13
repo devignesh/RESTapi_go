@@ -20,3 +20,23 @@ func AddRandomNumbers() {
 	fmt.Printf("result of addition %d\n", result)
 
 }
+
+func main() {
+	f, err := os.Create("trace.out")
+	if err != nil {
+		log.Fatalf("Trace file is not created %v\n", err)
+	}
+
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Fatalf("faile to close %v\n", err)
+		}
+	}()
+
+	if err := trace.Start(f); err != nil {
+		log.Fatalf("failed to start: %d\n", err)
+	}
+	defer trace.Stop()
+
+	AddRandomNumbers()
+}
